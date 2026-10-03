@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Hooks the END of Camera.update(). By then vanilla has computed the camera rotation from the
- * focused entity using the render tickDelta. We replace that rotation with a time-smoothed one.
- * Nothing about the player entity, mouse sensitivity, FOV or tick rate is touched.
+ * Hooks the END of Camera.update(). Smoothing is applied in FIRST PERSON only:
+ * in third person vanilla computes the camera position from the rotation, so changing
+ * the rotation afterwards would make the camera shift. Third person stays vanilla.
  */
 @Mixin(Camera.class)
 public abstract class CameraMixin {
@@ -25,13 +25,14 @@ public abstract class CameraMixin {
     @Inject(method = "update", at = @At("TAIL"))
     private void smoothcamera$smooth(CallbackInfo ci) {
         SmoothConfig cfg = SmoothConfig.get();
-        if (!cfg.enabled || cfg.smoothness <= 0) {
+        Camera self = (Camera) (Object) this;
+
+        if (!cfg.enabled || cfg.smoothness <= 0 || self.isThirdPerson()) {
             SmoothCameraController.reset();
             return;
         }
         // Avoid double smoothing: if vanilla Cinematic Camera is on, let vanilla do the work.
-        MinecraftClient mc = MinecraftClient.getInstance();
-        if (mc.options.smoothCameraEnabled) {
+        if (MinecraftClient.getInstance().options.smoothCameraEnabled) {
             SmoothCameraController.reset();
             return;
         }
