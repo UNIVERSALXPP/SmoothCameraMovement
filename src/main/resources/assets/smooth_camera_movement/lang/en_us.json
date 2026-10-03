@@ -1,0 +1,13 @@
+{
+  "key.category.smooth_camera_movement.main": "Smooth Camera Movement!",
+  "key.smooth_camera_movement.toggle": "Toggle Smooth Camera Movement",
+  "key.smooth_camera_movement.increase": "Increase Smoothness",
+  "key.smooth_camera_movement.decrease": "Decrease Smoothness",
+  "key.smooth_camera_movement.settings": "Open Settings",
+  "smooth_camera_movement.screen.title": "Smooth Camera Movement! Settings",
+  "smooth_camera_movement.option.enabled": "Custom Smooth Camera Movement: %s",
+  "smooth_camera_movement.option.hud": "Show HUD: %s",
+  "smooth_camera_movement.option.smoothness": "Smoothness: %s%%",
+  "smooth_camera_movement.on": "ON",
+  "smooth_camera_movement.off": "OFF"
+}

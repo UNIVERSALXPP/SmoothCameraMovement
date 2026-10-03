@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "smooth_camera_movement",
+  "version": "${version}",
+  "name": "Smooth Camera Movement!",
+  "description": "Adjustable cinematic camera smoothing (0-100%) that stays smooth at any tick rate. Client-side only.",
+  "authors": ["Universal_XP_"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.universalxp.smoothcamera.client.SmoothCameraClient"]
+  },
+  "mixins": ["smooth_camera_movement.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.17.0",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
